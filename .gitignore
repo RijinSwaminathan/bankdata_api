@@ -136,3 +136,4 @@ dmypy.json
 .idea/modules.xml
 .idea/vcs.xml
 templates/
+!/bank/migrations/0001_initial.py
