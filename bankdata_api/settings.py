@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +27,6 @@ SECRET_KEY = '!&6=a(m8e+2_6d^+t+ej%-u$i!-iv$!sr6r7-^l38019a^$%(o'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -78,9 +79,14 @@ WSGI_APPLICATION = 'bankdata_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 SQLITE = False
-POSTGRESQL = True
-
+POSTGRESQL = False
+ON_HEROKU = True
 DATABASES = {}
+"""
+Uncomment below two lines to use heroku database in local. and change ON_HEROKU to True
+"""
+# DATABASE_URL = 'postgres://guxzhulkrmtocd:efea2b2b8e6af4e1e9da198f8c27204e49423454df4eebf0f425cd116f9f5905@ec2-52-2-6-71.compute-1.amazonaws.com:5432/daobehdlmcu974'
+# os.environ.__setitem__('DATABASE_URL', DATABASE_URL)
 if SQLITE:
     DATABASES = {
         'default': {
@@ -88,6 +94,9 @@ if SQLITE:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+elif ON_HEROKU:
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600,
+                                                  ssl_require=True)
 else:
     DATABASES = {
         'default': {
