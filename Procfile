@@ -1,0 +1,1 @@
+web: gunicorn bankdata_api.wsgi
