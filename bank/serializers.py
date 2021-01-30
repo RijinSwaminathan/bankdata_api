@@ -4,7 +4,6 @@ from bank.models import Banks
 
 
 class BankNameSerializer(serializers.Serializer):
-    bank_id = serializers.IntegerField(read_only=True)
     bank_name = serializers.CharField(read_only=True)
 
 
@@ -21,5 +20,5 @@ class BankDetailsSerializers(serializers.Serializer):
 
     def get_bank_name(self, obj):
         bank_obj = Banks.objects.filter(bank_id=obj.bank_id)
-        bank_data = bank_obj.get(bank_id=obj.bank_id)
-        return bank_data.name
+        bank_ser = BankNameSerializer(bank_obj)
+        return bank_ser.data

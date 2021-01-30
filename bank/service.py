@@ -1,6 +1,6 @@
-from bank.models import Branch
+from bank.models import Branch, Banks
 from bank.serializers import BankDetailsSerializers
-from core.response import success_message
+from core.response import success_message, not_found
 
 
 class BankDetailService:
@@ -13,7 +13,10 @@ class BankDetailService:
 
     # get the branch details according to
     def view_branch_by_name_city(self, city, bank_name):
-        branch_data = Branch.objects.filter(city=city, bank_name=bank_name)
-        branch_details = BankDetailsSerializers(branch_data, many=True)
-        return success_message(message='Fetch the branch Details according to bank name and city name',
-                               data=branch_details.data)
+        branch_data = Branch.objects.filter(city=city)
+        if Banks.objects.filter(name=bank_name):
+            branch_details = BankDetailsSerializers(branch_data, many=True)
+            return success_message(message='Fetch the branch Details according to bank name and city name',
+                                   data=branch_details.data)
+        else:
+            return not_found(message='Bank name not exists')

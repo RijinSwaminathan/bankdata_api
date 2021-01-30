@@ -21,3 +21,13 @@ def success_message(message="", data=''):
         },
         status=status.HTTP_200_OK
     )
+
+
+def not_found(message=""):
+    return Response(
+        {
+            'status': 404,
+            'message': message
+        },
+        status=status.HTTP_404_NOT_FOUND
+    )
