@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/bank/migrations/
+.idea/.gitignore
+.idea/bankdata_api.iml
+.idea/dataSources.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+templates/
