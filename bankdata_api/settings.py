@@ -117,14 +117,14 @@ WSGI_APPLICATION = 'bankdata_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 SQLITE = False
-POSTGRESQL = True
-ON_HEROKU = False
+POSTGRESQL = False
+ON_HEROKU = True
 DATABASES = {}
 """
 Uncomment below two lines to use heroku database in local. and change ON_HEROKU to True
 """
-# DATABASE_URL = 'postgres://guxzhulkrmtocd:efea2b2b8e6af4e1e9da198f8c27204e49423454df4eebf0f425cd116f9f5905@ec2-52-2-6-71.compute-1.amazonaws.com:5432/daobehdlmcu974'
-# os.environ.__setitem__('DATABASE_URL', DATABASE_URL)
+DATABASE_URL = 'postgres://iqelsrbglefnbe:c31e65b1a3228f8f47fe1bf59d4588a70719ac5769b194ffb328c68a1c34b107@ec2-52-205-3-3.compute-1.amazonaws.com:5432/d4gjpprjs7itpv'
+os.environ.__setitem__('DATABASE_URL', DATABASE_URL)
 if SQLITE:
     DATABASES = {
         'default': {
