@@ -20,5 +20,7 @@ import bank
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bank/', include('bank.urls'))
+    path('bank/', include('bank.urls')),
+    path('user/', include('user.urls'))
+
 ]
